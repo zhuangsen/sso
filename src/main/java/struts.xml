@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+"http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+	<!--设置开发模式，请求后缀的配置 -->
+	<constant name="struts.action.extension" value="action" />
+	<!--设置编码形式为UTF-8 -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<!--省略其他配置信息 -->
+	<constant name="struts.multipart.maxSize" value="1073741824" />
+
+	<package name="sso" namespace="/sso" extends="struts-default">
+		<action name="doLogin" class="com.zs.sso_learn.SSOAction" method="doLogin">
+			<result name="success" type="redirect">${gotoUrl}</result>
+		</action>
+	</package>
+	
+	<package name="demo1" namespace="/demo1" extends="struts-default">
+		<action name="main" class="com.zs.demo1.Demo1Action" method="main">
+			<result name="success">/same/success1.jsp</result>
+			<result name="login">/same/login.jsp</result>
+		</action>
+	</package>
+	
+	<package name="demo2" namespace="/demo2" extends="struts-default">
+		<action name="main" class="com.zs.demo2.Demo2Action" method="main">
+			<result name="success">/same/success2.jsp</result>
+			<result name="login">/same/login.jsp</result>
+		</action>
+	</package>
+	
+	
+	
+	
+	<package name="xsso" namespace="/xsso" extends="struts-default">
+		<action name="doLogin" class="check.x.com.SSOAction" method="doLogin">
+			<result name="success" type="redirect">${gotoUrl}</result>
+		</action>
+		<action name="checkCookie" class="check.x.com.SSOAction" method="checkCookie"></action>
+	</package>
+	
+	<package name="xdemo1" namespace="/xdemo1" extends="struts-default">
+		<action name="main" class="demo1.x.com.Demo1Action" method="main">
+			<result name="success">/same_father/success1.jsp</result>
+			<result name="login">/same_father/login.jsp</result>
+		</action>
+	</package>
+	
+	<package name="xdemo2" namespace="/xdemo2" extends="struts-default">
+		<action name="main" class="demo2.x.com.Demo2Action" method="main">
+			<result name="success">/same_father/success2.jsp</result>
+			<result name="login">/same_father/login.jsp</result>
+		</action>
+	</package>
+
+
+
+	<package name="csso" namespace="/csso" extends="struts-default">
+		<action name="doLogin" class="www.x.com.SSOAction" method="doLogin"></action>
+		<action name="checkCookie" class="www.x.com.SSOAction" method="checkCookie"></action>
+	</package>
+	
+	<package name="cdemo1" namespace="/cdemo1" extends="struts-default">
+		<action name="doLogin" class="www.a.com.Demo1Action" method="doLogin">
+			<result name="success">/cross/success1.jsp</result>
+			<result name="login">/cross/login.jsp</result>
+		</action>
+		<action name="addCookie" class="www.a.com.Demo1Action" method="addCookie"></action>
+		<action name="main" class="www.a.com.Demo1Action" method="main">
+			<result name="success">/cross/success1.jsp</result>
+			<result name="login">/cross/login.jsp</result>
+		</action>
+	</package>
+	
+	<package name="cdemo2" namespace="/cdemo2" extends="struts-default">
+		<action name="main" class="www.b.com.Demo2Action" method="main">
+			<result name="success">/cross/success2.jsp</result>
+			<result name="login">/cross/login.jsp</result>
+		</action>
+		<action name="doLogin" class="www.b.com.Demo2Action" method="doLogin">
+			<result name="success">/cross/success2.jsp</result>
+			<result name="login">/cross/login.jsp</result>
+		</action>
+		<action name="addCookie" class="www.b.com.Demo2Action" method="addCookie"></action>
+	</package>
+</struts>
